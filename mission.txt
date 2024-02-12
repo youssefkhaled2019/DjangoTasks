@@ -1,0 +1,12 @@
+--------------day1-------------12/02/2023
+create  login -logout-register-profile-layout-home-about templates
+create user app
+create register system for user (username-password-email)
+change in password_validation
+disapper help_texts show down  fieldes
+--------------------------------------
+-create login and logout system
+-create   login ,logout  templates   and modefy profile  
+-use Authentication system  protection home and profile pages  by login_required
+and must user is Authentication by user.is_authenticated
+--------------------------------------
