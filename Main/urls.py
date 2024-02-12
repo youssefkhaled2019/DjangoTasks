@@ -16,16 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from crud import views
-
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.contrib.auth.views import LoginView,LogoutView
+from crud import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include("crud.urls")),
-    path('', views.home,name="home"),
-    path('delete/<int:id>', views.delete,name="delete"),
-    path('update/<int:id>', views.update,name="update"),
-    # path('login', views.login,name="login"),
-]#+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', include("crud.urls")),
+    path('login/', LoginView.as_view(template_name="crud/login.html"),name="login"),
+    path('logout/', LogoutView.as_view(template_name="crud/logout.html"),name="logout"),
+
+    path('register/', views.register,name="register"),
+
+
+
+    
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

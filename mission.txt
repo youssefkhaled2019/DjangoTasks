@@ -3,5 +3,5 @@ day_1    create app
          install bootstab
          create crud operation
 ========================
-
+day_2  login -logout-regester
 ========================                        
