@@ -2,11 +2,10 @@ from django.shortcuts import render,redirect
 from .forms import PostForm,UserRegisterForm
 from .models import post
 from django.contrib import messages
-
+from django.contrib.auth import authenticate,login,logout
 # from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 # @login_required(login_url='login') #redirect when user is not logged in
 def home(request):
     
@@ -31,7 +30,6 @@ def home(request):
 def update(request,id):
     data=post.objects.get(id=id)
     if request.method=="POST":
-       print(request.POST)
        form= PostForm(request.POST,instance=data)
        if(form.is_valid() and data.author == request.user ):
           
@@ -83,3 +81,21 @@ def register (request):
 
     
     return render(request, "crud/register.html",{"form":form})
+
+
+def login_(request):
+    if request.method=="POST":
+      username=request.POST["username"]
+      password=request.POST["password"]
+      user =authenticate(username=username,password=password)
+      if(user):
+          login(request,user)
+      else:
+          messages.error(request,"username or password error")    
+         #  return redirect("home")
+    return redirect("home")
+
+
+def logout_(request):
+    logout(request)
+    return redirect("home")

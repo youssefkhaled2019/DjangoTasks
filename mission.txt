@@ -5,3 +5,9 @@ day_1    create app
 ========================
 day_2  login -logout-regester
 ========================                        
+day_3  update logform : login -logout
+       add message alert if login has error
+       add publisher date , post update
+       add search
+       add background-image 
+========================  

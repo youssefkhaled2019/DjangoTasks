@@ -23,9 +23,10 @@ from crud import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("crud.urls")),
-    path('login/', LoginView.as_view(template_name="crud/login.html"),name="login"),
-    path('logout/', LogoutView.as_view(template_name="crud/logout.html"),name="logout"),
-
+    # path('login/', LoginView.as_view(template_name="crud/login.html"),name="login"),
+    # path('logout/', LogoutView.as_view(template_name="crud/logout.html"),name="logout"),
+    path('login/',views.login_,name="login"),
+    path('logout/', views.logout_,name="logout"),
     path('register/', views.register,name="register"),
 
 

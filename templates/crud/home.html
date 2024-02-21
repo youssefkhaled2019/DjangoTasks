@@ -3,11 +3,21 @@
 
 {% block content %}
 
-
+{% if messages %}
+  {% for i in  messages %}
+    <div class="alert  mt-2 alert-danger alert-dismissible fade show" role="alert">
+      <strong>ERROR:</strong> {{i}};
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {%   endfor %}
+{%   endif %}  
 <div class="row">
-       
-  <div class="col   mt-3 d-flex  justify-content-center">
+  
+  <div class="col   mt-2 d-flex  justify-content-center ">
 
+  
 
 
     {% if request.user.is_authenticated %}
@@ -38,10 +48,12 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">text</th>
-              <th scope="col">n_ubdate</th>
+              <th scope="col">n_update</th>
               <th scope="col">by</th>
               <th scope="col"> update</th>
               <th scope="col">delete</th>
+              <th scope="col"> publisher date</th>
+              <th scope="col">post update</th>
             </tr>
           </thead>
           <tbody>
@@ -56,7 +68,7 @@
               <tr>
                 <td>{{forloop.counter}}</td>
               <!-- <td>{{i.id}}</td> -->
-              <td>{{i.text}}</td>
+              <td >{{i.text|truncatechars:40 }}</td>  <!-- slice:":50" -->
               <td>{{i.n_update}}</td>
 
               <td>@{{i.author}}</td>
@@ -71,11 +83,17 @@
               {% else %}
               <td>--</td>
               <td>--</td>
+            
               {% endif %}
+              <td>{{ i.post_date }}</td>
+              <td>{{ i.post_update_date }}</td>
                </tr>
+
+
               {% endfor %}
 
-           
+            </tr>
+
          
           </tbody>
         </table>
